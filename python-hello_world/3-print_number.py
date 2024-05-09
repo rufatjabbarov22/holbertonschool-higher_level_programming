@@ -1,9 +1,4 @@
 #!/usr/bin/python3
-number = 333
-print(f"{number} Battery street")
-
-number = -98
-print(f"{number} Battery street")
-
-number = 0
-print(f"{number} Battery street")
+numbers = [333, -98, 0]
+for number in numbers:
+    print(f"{number} Battery street")
