@@ -1,8 +1,5 @@
 #!/usr/bin/python3
 
-output = ""
+output = ''.join(chr(char) for char in range(ord('a'), ord('z')+1))
 
-for char in range(ord('a'), ord('z')+1):
-    output += chr(char)
-
-print(output)
+print("{}".format(output))
