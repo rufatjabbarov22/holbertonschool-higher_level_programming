@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 
+output = ""
+
 for char in range(ord('a'), ord('z')+1):
-    print(char(char), end="")
+    output += chr(char)
 
-
-print()
+print(output)
