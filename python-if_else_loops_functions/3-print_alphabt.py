@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 
+output = ""
+
 for char in range(ord('a'), ord('z')+1):
     if chr(char) not in 'qe':
-        print("{}".format(chr(char)), end="")
+        output += chr(char)
 
-print()
-
+print("{}".format(output), end="")
