@@ -1,3 +1,3 @@
 #!/usr/bin/python3
-number = NULL
+number = 0
 print(f"{number} Battery street")
