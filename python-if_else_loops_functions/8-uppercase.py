@@ -10,8 +10,3 @@ def uppercase(s):
         result += uppercase_char
 
     print("{}".format(result))
-
-
-uppercase("best")
-uppercase("Best School 98 Battery street")
-
