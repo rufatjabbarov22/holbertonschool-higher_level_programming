@@ -1,15 +1,17 @@
 #!/usr/bin/python3
 
 def uppercase(s):
+    result = ""
     for char in s:
-        if ord('a') <= ord(char) <= ord('z'):
+        if 97 <= ord(char) <= 122:
             uppercase_char = chr(ord(char) - 32)
         else:
             uppercase_char = char
-        print(uppercase_char, end="")
-    print()
+        result += uppercase_char
 
+    print("{}".format(result))
 
 
 uppercase("best")
 uppercase("Best School 98 Battery street")
+
