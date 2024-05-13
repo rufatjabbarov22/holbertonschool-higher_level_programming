@@ -7,3 +7,10 @@ def pow(a, b):
     else:
         result = 1.0 / pow(a, -b)
     return result
+
+print(pow(2, 2))
+print(pow(98, 2))
+print(pow(98, 0))
+print(pow(100, -2))
+print(pow(-4, 5))
+print(pow(-98, -10))
