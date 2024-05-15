@@ -1,8 +1,10 @@
+#!/usr/bin/env python
+
 import uncompyle6
 
 def decompile_pyc(pyc_file):
     with open(pyc_file, 'rb') as f:
-        source_code = uncompyle6.decompile_code(None, f.read())
+        source_code = uncompyle6.decompile_file(None, f)
     return source_code
 
 def extract_names(source_code):
