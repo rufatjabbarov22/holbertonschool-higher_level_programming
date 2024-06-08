@@ -1,50 +1,43 @@
-from flask import Flask, jsonify, request
+#!/usr/bin/python3
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-
-users = {
-    "jane": {"username": "jane", "name": "Jane", "age": 28, "city": "Los Angeles"},
-    "john": {"username": "john", "name": "John", "age": 30, "city": "New York"}
-}
-
+# In-memory storage for users
+all_users = {}
 
 @app.route('/')
 def home():
-    return "Welcome to the Flask API!"
-
+    return 'Welcome to the Flask API!'
 
 @app.route('/data')
-def get_data():
-    return jsonify(list(users.keys()))
-
-
-@app.route('/status')
-def get_status():
-    return "OK"
-
-
-@app.route('/users/<username>')
-def get_user(username):
-    user = users.get(username)
-    if user:
-        return jsonify(user)
-    else:
-        return jsonify({"error": "User not found"}), 404
-
+def data():
+    usernames = list(all_users.keys())
+    return jsonify(usernames)
 
 @app.route('/add_user', methods=['POST'])
 def add_user():
-    data = request.get_json()
-    if data:
-        username = data.get('username')
-        if username:
-            users[username] = data
-            return jsonify({"message": "User added", "user": data}), 201
-        else:
-            return jsonify({"error": "Username not provided"}), 400
-    else:
-        return jsonify({"error": "No data provided"}), 400
+    if request.method == 'POST':
+        user = request.get_json()
+        if user is None:
+            return jsonify({"error": "No data provided"}), 400
+        if "username" not in user or user["username"] == "":
+            return jsonify({"error": "Invalid username"}), 400
+        if user['username'] in all_users:
+            return jsonify({"error": "User already exists"}), 400
+        all_users[user['username']] = user
+        return jsonify({"message": "User added", "user": user})
 
-if __name__ == '__main__':
-    app.run(debug=True)
+@app.route('/users/<username>')
+def user(username):
+    if username in all_users:
+        return jsonify(all_users[username])
+    else:
+        return jsonify({"error": "User not found"}), 404
+
+@app.route('/status')
+def status():
+    return "OK"
+
+if __name__ == "__main__":
+    app.run()
