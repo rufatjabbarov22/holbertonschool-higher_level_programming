@@ -12,6 +12,7 @@ if __name__ == "__main__":
         print("Usage: {} username password database".format(sys.argv[0]))
         sys.exit(1)
 
+    # Retrieve username, password, and database name from command line arguments
     username = sys.argv[1]
     password = sys.argv[2]
     database = sys.argv[3]
@@ -22,7 +23,7 @@ if __name__ == "__main__":
                              user=username, passwd=password, db=database)
         cursor = db.cursor()
 
-        # Execute the query to fetch cities with their states
+        # Execute query to fetch cities with their corresponding state names
         cursor.execute("""
             SELECT cities.id, cities.name, states.name
             FROM cities
@@ -30,10 +31,10 @@ if __name__ == "__main__":
             ORDER BY cities.id ASC
         """)
 
-        # Fetch all rows
+        # Fetch all rows from the query result
         rows = cursor.fetchall()
 
-        # Print results as per the example format
+        # Print results in the required format
         for row in rows:
             print(row)
 
@@ -42,5 +43,7 @@ if __name__ == "__main__":
         db.close()
 
     except MySQLdb.Error as e:
+        # Handle MySQL errors
         print("MySQL Error {}: {}".format(e.args[0], e.args[1]))
         sys.exit(1)
+
