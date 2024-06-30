@@ -12,6 +12,6 @@ class State(Base):
     """ Class representation of states table """
     __tablename__ = 'states'
     id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
-    name = Column(String(128), nullable=False)
-    cities = relationship("City", backref="state", cascade="all, delete")
+    name = Column(String(256), nullable=False)
+    cities = relationship("City", backref="state", cascade="all, delete-orphan")
 
